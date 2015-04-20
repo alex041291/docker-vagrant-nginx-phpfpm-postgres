@@ -21,10 +21,9 @@ $ vagrant up
 ### Spin up Container(s)
 ```sh
 $ cd ..
-$ vagrant up
+$ vagrant up --no-parallel
 ```
 
 ### Development
 
-That's it, the container is up and running and is bound to the IP Adress 10.10.10.10 and Port 80.
-Create a new entry in your hosts file to access it via www.myexample.dev or so to make your life easier. :-)
+The postgreSQL container is linked to the nginx+php container. The access data for the postgreSQL database is in the environmental variables within the nginx container. Those variables can also be accessed via PHP.

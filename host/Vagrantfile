@@ -1,0 +1,17 @@
+Vagrant.require_version ">= 1.6.0"
+VAGRANTFILE_API_VERSION = "2"
+
+Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+  config.vm.hostname = "docker-host"
+
+  # Always use Vagrant's default insecure key
+  config.ssh.insert_key = false
+
+  config.vm.box = "ubuntu/trusty64"
+  config.vm.provision "docker"
+
+  # Disable synced folders (prevents an NFS error on "vagrant up")
+  config.vm.synced_folder ".", "/vagrant", disabled: true
+
+  config.vm.network "private_network", ip: "10.10.10.10"
+end
